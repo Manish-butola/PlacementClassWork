@@ -1,37 +1,75 @@
 #include <iostream>
 
 using namespace std;
+int rtoi(char ch){
 
-string addBinary(string a, string b)
+switch(ch){
+
+
+case'I':return 1;
+case 'V':return 5;
+case 'X':return 10;
+case 'L':return 50;
+case 'C':return 100;
+case'D':return 500;
+
+case 'M':return 1000;
+}
+
+
+
+}
+
+
+
+
+
+
+int roman(string s)
+{
+
+        int num=0;
+  for(int i=0;i<s.length();i++){
     {
 
-        int i=a.length()-1;
-        int j=b.length()-1;
-        int carr=0;
-        string result;
-
-        while(i>=0||j>=0)
-        {
-            int sum=carr;
-            if(i>=0)
-                sum=sum+a[i--]-'0';
-            if(j>=0)
-                sum=sum+b[j--]-'0';
-            carr=sum/2;
-            result+=to_string(sum%2);
+        if(rtoi(s[i])<rtoi(s[i+1])){
+            num-=rtoi(s[i]);
         }
-        if(carr)
-        {
-            result+=to_string(carr);
+        else
+           num+=rtoi(s[i]);
+    }
+  }
 
-        }
-        reverse(result.begin(),result.end());
-        return (result);
+   return num;
+
+
 }
+
+ /* int num=0;
+  for(int i=0;i<s.length();i++){
+
+    if(rtoi(s[i]<rtoi(s[i+1])))
+    {
+
+        if(rtoi(s[i]<rtoi(s[i+1]))){
+            num=num+rtoi(s[i+1])-rtoi(s[i]);
+            i++;}
+        else
+                num=num+rtoi(s[i]);
+    }
+  }
+   return num;
+}*/
 int main()
 {
-    string a,b;
-    cin>>a>>b;
-    cout<<addBinary(a,b)<<endl;
-    return 0;
+string s;
+cin>>s;
+cout<<roman(s)<<endl;
+return 0;
 }
+
+
+
+
+
+
